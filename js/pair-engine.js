@@ -632,7 +632,7 @@
   const html = `
 <nav>
   <div class="nav-left">
-    <a href="../index.html" class="nav-back">
+    <a href="./index.html" class="nav-back">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
       Tous les pairs
     </a>
@@ -829,7 +829,7 @@
   <div class="footer-inner">
     <div class="footer-brand">${T1} × ${T2} — ${pair.badge}</div>
     <nav class="footer-nav" aria-label="Navigation">
-      <a href="../index.html">← Tous les pairs</a>
+      <a href="./index.html">← Tous les pairs</a>
       ${navPairs}
     </nav>
     <div class="footer-src">

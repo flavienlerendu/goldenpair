@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explorer les paires MBTI — 11 relations analysées</title>
+  <meta name="description" content="Découvrez 11 paires MBTI analysées en profondeur : compatibilité, dynamiques cognitives, communication et clés pour réussir.">
+  <link href="https://api.fontshare.com/v2/css?f[]=zodiak@400,500,600,700&f[]=satoshi@300,400,500,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+
+<style>
+/* ===== INDEX PAGE STYLES ===== */
+.pi-hero {
+  min-height: 100svh;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  padding-top: 5rem;
+}
+
+#bgCanvas {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  z-index: 0;
+  opacity: 0.6;
+}
+
+.pi-hero-orbs {
+  position: absolute; inset: 0; z-index: 1; pointer-events: none;
+}
+.pi-orb {
+  position: absolute; border-radius: 50%; filter: blur(90px);
+}
+.pi-orb-a {
+  width: 50vw; height: 50vw; max-width: 600px; max-height: 600px;
+  top: -10%; left: -15%;
+  background: radial-gradient(circle, #7c3aed 0%, transparent 65%);
+  opacity: .22;
+  animation: oF 14s ease-in-out infinite alternate;
+}
+.pi-orb-b {
+  width: 45vw; height: 45vw; max-width: 520px; max-height: 520px;
+  bottom: -8%; right: -12%;
+  background: radial-gradient(circle, #2563eb 0%, transparent 65%);
+  opacity: .2;
+  animation: oF 18s ease-in-out 4s infinite alternate;
+}
+.pi-orb-c {
+  width: 30vw; height: 30vw; max-width: 360px; max-height: 360px;
+  top: 30%; left: 55%;
+  background: radial-gradient(circle, #db2777 0%, transparent 65%);
+  opacity: .15;
+  animation: oF 22s ease-in-out 8s infinite alternate;
+}
+
+.pi-hero-content {
+  position: relative; z-index: 2;
+  max-width: 720px; padding-inline: clamp(1rem, 4vw, 2rem);
+}
+
+.pi-eyebrow {
+  display: inline-flex; align-items: center; gap: .5rem;
+  padding: .35rem 1rem;
+  border-radius: 999px;
+  background: rgba(124,58,237,.12);
+  border: 1px solid rgba(124,58,237,.3);
+  font-size: var(--tx);
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: #a78bfa;
+  margin-bottom: 2rem;
+}
+
+.pi-title {
+  font-family: var(--fd);
+  font-size: clamp(2.5rem, 1.5rem + 4vw, 5.5rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -.02em;
+  color: var(--tx);
+  margin-bottom: 1.5rem;
+}
+.pi-title-grad {
+  background: linear-gradient(135deg, #a78bfa 0%, #60a5fa 50%, #f472b6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.pi-sub {
+  font-size: var(--tl);
+  color: var(--txm);
+  max-width: 56ch;
+  margin: 0 auto 3rem;
+  line-height: 1.6;
+}
+
+.pi-stats {
+  display: flex; gap: clamp(1.5rem, 4vw, 3rem);
+  justify-content: center; flex-wrap: wrap;
+}
+.pi-stat { text-align: center; }
+.pi-stat-n {
+  font-family: var(--fd);
+  font-size: clamp(2rem, 1rem + 2vw, 3rem);
+  font-weight: 700;
+  color: var(--tx);
+  line-height: 1;
+}
+.pi-stat-l { font-size: var(--tx); color: var(--txm); margin-top: .25rem; }
+
+.pi-scroll {
+  position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+  z-index: 2;
+  display: flex; flex-direction: column; align-items: center; gap: .5rem;
+  color: var(--txf); font-size: .75rem; letter-spacing: .08em;
+  animation: bounce 2s ease-in-out infinite;
+}
+@keyframes bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(6px); }
+}
+
+/* ===== FILTER BAR ===== */
+.filter-section {
+  padding-block: 3rem 1rem;
+  position: relative; z-index: 1;
+}
+.filter-wrap {
+  display: flex; gap: .75rem; flex-wrap: wrap;
+  align-items: center;
+}
+.filter-label { font-size: var(--tx); color: var(--txm); font-weight: 500; margin-right: .25rem; }
+.filter-btn {
+  padding: .4rem 1.1rem;
+  border-radius: 999px;
+  border: 1px solid var(--bdr);
+  background: var(--surf2);
+  color: var(--txm);
+  font-size: .8rem;
+  font-weight: 600;
+  letter-spacing: .04em;
+  cursor: pointer;
+  transition: all var(--tr);
+}
+.filter-btn:hover { border-color: #7c3aed; color: var(--tx); background: rgba(124,58,237,.1); }
+.filter-btn.active { border-color: #7c3aed; color: #a78bfa; background: rgba(124,58,237,.12); }
+
+/* ===== PAIRS GRID ===== */
+.pairs-section {
+  padding-block: 1rem clamp(4rem, 8vw, 7rem);
+  position: relative; z-index: 1;
+}
+
+.pairs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr));
+  gap: 1.5rem;
+}
+
+.pair-card {
+  position: relative;
+  border-radius: 1.25rem;
+  border: 1px solid var(--bdr);
+  background: var(--surf);
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  transition: transform var(--tr), box-shadow var(--tr), border-color var(--tr);
+  display: flex; flex-direction: column;
+}
+.pair-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--card-c1, #7c3aed) 0%, var(--card-c2, #2563eb) 100%);
+  opacity: 0;
+  transition: opacity var(--tr);
+  z-index: 0;
+}
+.pair-card:hover { transform: translateY(-4px); box-shadow: var(--sh3); border-color: transparent; }
+.pair-card:hover::before { opacity: .06; }
+
+.card-top {
+  position: relative; z-index: 1;
+  padding: 1.75rem 1.75rem 0;
+}
+
+.card-types {
+  display: flex; align-items: center; gap: .75rem;
+  margin-bottom: 1rem;
+}
+.ctype {
+  font-family: var(--fd);
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 1;
+}
+.ctype-1 { color: var(--card-c1, #7c3aed); }
+.ctype-2 { color: var(--card-c2, #2563eb); }
+.ctype-sep { color: var(--txf); font-size: 1.2rem; font-family: var(--fd); }
+
+.card-badge {
+  display: inline-flex; align-items: center;
+  padding: .25rem .75rem;
+  border-radius: 999px;
+  font-size: .7rem;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, var(--card-c1, #7c3aed)18, var(--card-c2, #2563eb)18);
+  color: var(--tx);
+  border: 1px solid var(--bdr);
+  margin-bottom: 1rem;
+}
+
+.card-sub {
+  font-size: var(--ts);
+  color: var(--txm);
+  line-height: 1.5;
+  margin-bottom: 1.25rem;
+}
+
+.card-score-bar {
+  height: 4px;
+  border-radius: 999px;
+  background: var(--bdr);
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+.card-score-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--card-c1, #7c3aed), var(--card-c2, #2563eb));
+  transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  width: 0%;
+}
+
+.card-bottom {
+  position: relative; z-index: 1;
+  padding: 0 1.75rem 1.75rem;
+  display: flex; align-items: center; justify-content: space-between;
+  margin-top: auto;
+}
+
+.card-score-label {
+  font-size: var(--tx);
+  color: var(--txf);
+}
+.card-score-val {
+  font-family: var(--fd);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--tx);
+}
+
+.card-cta {
+  display: flex; align-items: center; gap: .4rem;
+  font-size: .8rem; font-weight: 600;
+  color: var(--txm);
+  padding: .4rem .9rem;
+  border-radius: 999px;
+  border: 1px solid var(--bdr);
+  background: var(--surf2);
+  transition: all var(--tr);
+}
+.pair-card:hover .card-cta {
+  border-color: var(--card-c1, #7c3aed);
+  color: var(--tx);
+  background: rgba(124,58,237,.08);
+}
+
+.card-temperament {
+  position: absolute; top: 1.25rem; right: 1.25rem;
+  font-size: .65rem; font-weight: 700; letter-spacing: .1em;
+  padding: .2rem .6rem;
+  border-radius: 999px;
+  background: var(--surfo);
+  color: var(--txf);
+  border: 1px solid var(--bdr);
+  z-index: 2;
+}
+
+/* ===== NAV ===== */
+.pi-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 300;
+  padding: 0.875rem clamp(1rem, 4vw, 2rem);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  background: rgba(8,6,22,.78);
+  border-bottom: 1px solid var(--div);
+}
+[data-theme="light"] .pi-nav { background: rgba(245,243,240,.88); }
+
+.pi-nav-logo {
+  font-family: var(--fd);
+  font-size: 1.1rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #a78bfa, #60a5fa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ===== HIDDEN BY FILTER ===== */
+.pair-card.hidden { display: none; }
+
+/* ===== LIGHT THEME TWEAKS ===== */
+[data-theme="light"] .pi-orb-a { opacity: .1; }
+[data-theme="light"] .pi-orb-b { opacity: .08; }
+[data-theme="light"] .pi-orb-c { opacity: .07; }
+[data-theme="light"] #bgCanvas { opacity: 0.12; }
+</style>
+</head>
+<body>
+
+<div id="sp"></div>
+
+<nav class="pi-nav">
+  <div class="pi-nav-logo">MBTI Pairs</div>
+  <button class="theme-btn" id="tb" aria-label="Changer le thème">
+    <svg id="tic" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+    </svg>
+  </button>
+</nav>
+
+<section class="pi-hero">
+  <canvas id="bgCanvas"></canvas>
+  <div class="pi-hero-orbs">
+    <div class="pi-orb pi-orb-a"></div>
+    <div class="pi-orb pi-orb-b"></div>
+    <div class="pi-orb pi-orb-c"></div>
+  </div>
+  <div class="pi-hero-content">
+    <div class="pi-eyebrow">✦ Explorer les types</div>
+    <h1 class="pi-title">11 paires <span class="pi-title-grad">analysées</span></h1>
+    <p class="pi-sub">Chaque relation MBTI est une alchimie unique. Explorez les dynamiques cognitives, les forces, les défis et les clés de compatibilité entre 11 paires emblématiques.</p>
+    <div class="pi-stats">
+      <div class="pi-stat"><div class="pi-stat-n">136</div><div class="pi-stat-l">Paires possibles</div></div>
+      <div class="pi-stat"><div class="pi-stat-n">11</div><div class="pi-stat-l">Analysées ici</div></div>
+      <div class="pi-stat"><div class="pi-stat-n">10</div><div class="pi-stat-l">Dimensions</div></div>
+    </div>
+  </div>
+  <div class="pi-scroll">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 13l5 5 5-5M7 6l5 5 5-5"/></svg>
+    Défiler
+  </div>
+</section>
+
+<section class="filter-section">
+  <div class="wrap">
+    <div class="filter-wrap">
+      <span class="filter-label">Filtrer :</span>
+      <button class="filter-btn active" data-filter="all">Tous</button>
+      <button class="filter-btn" data-filter="NF">NF — Idéalistes</button>
+      <button class="filter-btn" data-filter="NT">NT — Rationnels</button>
+      <button class="filter-btn" data-filter="SJ">SJ — Gardiens</button>
+      <button class="filter-btn" data-filter="SP">SP — Artisans</button>
+    </div>
+  </div>
+</section>
+
+<section class="pairs-section">
+  <div class="wrap">
+    <div class="pairs-grid" id="pairsGrid"></div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">MBTI Pairs — 11 relations analysées</div>
+    <div class="footer-src">Sources : Crystal Knows, Psychology Junkie, Cognitive Type — Données croisées sur la compatibilité des types MBTI</div>
+  </div>
+</footer>
+
+<script src="../data/types.js"></script>
+<script src="../data/pairs.js"></script>
+<script>
+/* ===== THEME ===== */
+const root = document.documentElement;
+let theme = 'dark';
+const sunSVG = `<circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>`;
+const moonSVG = `<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>`;
+document.getElementById('tb').addEventListener('click', () => {
+  theme = theme === 'dark' ? 'light' : 'dark';
+  root.setAttribute('data-theme', theme);
+  document.getElementById('tic').innerHTML = theme === 'dark' ? sunSVG : moonSVG;
+});
+
+/* ===== SCROLL PROGRESS ===== */
+window.addEventListener('scroll', () => {
+  const p = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+  document.getElementById('sp').style.width = p + '%';
+}, { passive: true });
+
+/* ===== STARFIELD ===== */
+(function() {
+  const cv = document.getElementById('bgCanvas');
+  const ctx = cv.getContext('2d');
+  let stars = [], frame = 0;
+  function resize() { cv.width = window.innerWidth; cv.height = window.innerHeight; build(); }
+  function build() {
+    stars = [];
+    const n = Math.floor(cv.width * cv.height / 9000);
+    const cols = ['#7c3aed','#2563eb','#db2777','#0891b2','#059669'];
+    for (let i = 0; i < n; i++) {
+      stars.push({
+        x: Math.random() * cv.width, y: Math.random() * cv.height,
+        r: Math.random() * 1.2 + 0.2, o: Math.random() * 0.5 + 0.1,
+        sp: Math.random() * 0.2 + 0.03, ph: Math.random() * Math.PI * 2,
+        col: Math.random() < 0.2 ? cols[Math.floor(Math.random() * cols.length)] : null,
+      });
+    }
+  }
+  function draw() {
+    ctx.clearRect(0, 0, cv.width, cv.height);
+    frame++;
+    for (const s of stars) {
+      const op = s.o * (0.5 + 0.5 * Math.sin(frame * s.sp * 0.04 + s.ph));
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.fillStyle = s.col ? s.col + Math.round(op * 255).toString(16).padStart(2, '0') : `rgba(255,255,255,${op})`;
+      ctx.fill();
+    }
+    requestAnimationFrame(draw);
+  }
+  window.addEventListener('resize', resize);
+  resize();
+  draw();
+})();
+
+/* ===== PAIRS CONFIG ===== */
+const SELECTED_PAIRS = [
+  { key: 'intj-entp',  badge: "L'Alliance Stratégique" },
+  { key: 'infj-enfp',  badge: 'Le Golden Pair' },
+  { key: 'infp-enfj',  badge: 'Les Idéalistes Complémentaires' },
+  { key: 'infj-intj',  badge: 'La Vision Partagée' },
+  { key: 'intp-entp',  badge: 'Le Laboratoire des Idées' },
+  { key: 'infj-entp',  badge: "L'Oracle et le Débatteur" },
+  { key: 'isfj-esfj',  badge: "L'Alliance des Nourriciers" },
+  { key: 'infp-enfp',  badge: "Les Explorateurs d'Âmes" },
+  { key: 'intj-entj',  badge: 'Les Stratèges du Sommet' },
+  { key: 'istp-estp',  badge: "Les Artisans de l'Action" },
+  { key: 'infj-isfj',  badge: 'Le Soin et la Vision' },
+];
+
+function parseKey(key) {
+  const parts = key.split('-');
+  for (let i = 1; i < parts.length; i++) {
+    const a = parts.slice(0, i).join('-').toUpperCase();
+    const b = parts.slice(i).join('-').toUpperCase();
+    if (TYPES[a] && TYPES[b]) return [a, b];
+  }
+  return [null, null];
+}
+
+function getTemperament(type) {
+  return TYPES[type]?.temperament || '??';
+}
+
+function getCardTemperament(t1, t2) {
+  const temp1 = getTemperament(t1);
+  const temp2 = getTemperament(t2);
+  if (temp1 === temp2) return temp1;
+  return [temp1, temp2].sort().join('/');
+}
+
+function getFilterTag(t1, t2) {
+  const temps = new Set([getTemperament(t1), getTemperament(t2)]);
+  if (temps.size === 1) return [...temps][0];
+  // Mixed: assign to both
+  return [...temps].join(' ');
+}
+
+/* ===== BUILD GRID ===== */
+const grid = document.getElementById('pairsGrid');
+
+SELECTED_PAIRS.forEach(({ key }) => {
+  const pair = PAIRS[key];
+  const [T1, T2] = parseKey(key);
+  if (!pair || !T1 || !T2) return;
+
+  const t1 = TYPES[T1];
+  const t2 = TYPES[T2];
+  const score = pair.kpi[0];
+  const tempTag = getCardTemperament(T1, T2);
+  const filterVal = getFilterTag(T1, T2);
+
+  const card = document.createElement('a');
+  card.href = `${key}.html`;
+  card.className = 'pair-card r';
+  card.dataset.filter = filterVal;
+  card.style.setProperty('--card-c1', t1.color);
+  card.style.setProperty('--card-c2', t2.color);
+
+  card.innerHTML = `
+    <div class="card-temperament">${tempTag}</div>
+    <div class="card-top">
+      <div class="card-types">
+        <span class="ctype ctype-1">${T1}</span>
+        <span class="ctype-sep">×</span>
+        <span class="ctype ctype-2">${T2}</span>
+      </div>
+      <div class="card-badge">✦ ${pair.badge} ✦</div>
+      <p class="card-sub">${pair.subtitle}</p>
+      <div class="card-score-bar">
+        <div class="card-score-fill" data-score="${score}"></div>
+      </div>
+    </div>
+    <div class="card-bottom">
+      <div>
+        <div class="card-score-label">Compatibilité globale</div>
+        <div class="card-score-val">${score}%</div>
+      </div>
+      <div class="card-cta">
+        Analyser
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </div>
+    </div>`;
+
+  grid.appendChild(card);
+});
+
+/* ===== REVEAL ANIMATION ===== */
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('in');
+      // Animate score bars
+      const bar = e.target.querySelector('.card-score-fill');
+      if (bar) {
+        const score = bar.dataset.score;
+        setTimeout(() => { bar.style.width = score + '%'; }, 100);
+      }
+      ro.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08 });
+document.querySelectorAll('.pair-card').forEach(el => ro.observe(el));
+
+/* ===== FILTER ===== */
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const f = btn.dataset.filter;
+    document.querySelectorAll('.pair-card').forEach(card => {
+      if (f === 'all' || card.dataset.filter.includes(f)) {
+        card.classList.remove('hidden');
+      } else {
+        card.classList.add('hidden');
+      }
+    });
+  });
+});
+</script>
+</body>
+</html>
