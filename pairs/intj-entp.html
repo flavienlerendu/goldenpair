@@ -1,0 +1,1232 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>INTJ × ENTP — L'Alliance Stratégique | MBTI Pairs</title>
+  <meta name="description" content="Analyse approfondie de la relation INTJ et ENTP : dynamiques intellectuelles, tensions créatives et viabilité à long terme de ce duo NT.">
+  <link href="https://api.fontshare.com/v2/css?f[]=zodiak@400,500,600,700&f[]=satoshi@300,400,500,700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+/* ===== RESET ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+}
+
+/* ===== TOKENS ===== */
+:root {
+  --tx:   clamp(0.75rem,  0.7rem  + 0.25vw, 0.875rem);
+  --ts:   clamp(0.875rem, 0.8rem  + 0.35vw, 1rem);
+  --tb:   clamp(1rem,     0.95rem + 0.25vw, 1.125rem);
+  --tl:   clamp(1.125rem, 1rem    + 0.75vw, 1.5rem);
+  --txl:  clamp(1.5rem,   1.2rem  + 1.25vw, 2.25rem);
+  --t2xl: clamp(2rem,     1.2rem  + 2.5vw,  3.5rem);
+  --hero: clamp(3.5rem,   0.5rem  + 8vw,    9rem);
+  --fd: 'Zodiak', Georgia, serif;
+  --fb: 'Satoshi', Inter, sans-serif;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --tr: 220ms cubic-bezier(0.16, 1, 0.3, 1);
+  --mw: 1200px;
+}
+
+/* ===== DARK ===== */
+[data-theme="dark"] {
+  --bg:     #06090f;
+  --surf:   #0c1018;
+  --surf2:  #111620;
+  --surfo:  #161d2a;
+  --bdr:    #1e2a3a;
+  --div:    #182030;
+  --tx:     #e8eef5;
+  --txm:    #8a9ab8;
+  --txf:    #445060;
+  --txi:    #06090f;
+  --ip:     #3b82f6;
+  --ipb:    #60a5fa;
+  --ig:     rgba(59,130,246,0.3);
+  --is:     rgba(59,130,246,0.1);
+  --ep:     #10b981;
+  --epb:    #34d399;
+  --eg:     rgba(16,185,129,0.3);
+  --es:     rgba(16,185,129,0.1);
+  --ok:     #6daa45;
+  --oks:    rgba(109,170,69,0.12);
+  --err:    #df6f8a;
+  --errs:   rgba(223,111,138,0.12);
+  --grad:   linear-gradient(135deg, #3b82f6, #10b981);
+  --sh1: 0 1px 3px rgba(0,0,0,.4);
+  --sh2: 0 4px 20px rgba(0,0,0,.5);
+  --sh3: 0 12px 50px rgba(0,0,0,.6);
+  --gi: 0 0 60px rgba(59,130,246,.25);
+  --ge: 0 0 60px rgba(16,185,129,.25);
+}
+
+/* ===== LIGHT ===== */
+[data-theme="light"] {
+  --bg:     #f2f5f8;
+  --surf:   #ffffff;
+  --surf2:  #eaf0f8;
+  --surfo:  #e0eaf5;
+  --bdr:    #c8d8e8;
+  --div:    #d5e2ee;
+  --tx:     #0f1a28;
+  --txm:    #4a6070;
+  --txf:    #8090a0;
+  --txi:    #f2f5f8;
+  --ip:     #1d5fb8;
+  --ipb:    #2d74d0;
+  --ig:     rgba(29,95,184,.18);
+  --is:     rgba(29,95,184,.07);
+  --ep:     #087a52;
+  --epb:    #0f9a68;
+  --eg:     rgba(8,122,82,.18);
+  --es:     rgba(8,122,82,.07);
+  --ok:     #3d7a1a;
+  --oks:    rgba(61,122,26,.08);
+  --err:    #9e2845;
+  --errs:   rgba(158,40,69,.08);
+  --grad:   linear-gradient(135deg, #1d5fb8, #087a52);
+  --sh1: 0 1px 3px rgba(0,0,0,.06);
+  --sh2: 0 4px 20px rgba(0,0,0,.08);
+  --sh3: 0 12px 50px rgba(0,0,0,.12);
+  --gi: 0 0 60px rgba(29,95,184,.1);
+  --ge: 0 0 60px rgba(8,122,82,.1);
+}
+
+/* ===== BASE ===== */
+body {
+  min-height: 100dvh;
+  font-family: var(--fb);
+  font-size: var(--tb);
+  color: var(--tx);
+  background: var(--bg);
+  line-height: 1.65;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: linear-gradient(var(--bdr) 1px, transparent 1px), linear-gradient(90deg, var(--bdr) 1px, transparent 1px);
+  background-size: 48px 48px;
+  opacity: 0.18;
+  z-index: 0;
+  pointer-events: none;
+}
+[data-theme="light"] body::before { opacity: 0.07; }
+
+h1, h2, h3, h4 { font-family: var(--fd); text-wrap: balance; line-height: 1.1; }
+p, li { text-wrap: pretty; max-width: 72ch; }
+ul[role="list"] { list-style: none; }
+button { cursor: pointer; background: none; border: none; font: inherit; color: inherit; }
+a { color: inherit; text-decoration: none; }
+img, canvas, svg { display: block; max-width: 100%; }
+::selection { background: rgba(59,130,246,.25); color: var(--tx); }
+:focus-visible { outline: 2px solid var(--ip); outline-offset: 3px; border-radius: 4px; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border-width: 0; }
+
+.wrap {
+  width: 100%;
+  max-width: var(--mw);
+  margin: 0 auto;
+  padding-inline: clamp(1rem, 4vw, 2rem);
+}
+
+section { padding-block: clamp(4rem, 8vw, 7rem); position: relative; z-index: 1; }
+
+/* ===== SCROLL PROGRESS ===== */
+#sp {
+  position: fixed;
+  top: 0; left: 0;
+  height: 3px;
+  width: 0%;
+  background: var(--grad);
+  z-index: 400;
+  box-shadow: 0 0 12px rgba(59,130,246,.6);
+  transition: width 60ms linear;
+}
+
+/* ===== NAV ===== */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 300;
+  padding: 0.875rem clamp(1rem, 4vw, 2rem);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  background: rgba(6,9,15,.78);
+  border-bottom: 1px solid var(--div);
+  transition: background var(--tr);
+}
+[data-theme="light"] nav { background: rgba(242,245,248,.88); }
+
+.nav-left { display: flex; align-items: center; gap: 1rem; }
+.nav-back {
+  display: flex; align-items: center; gap: .4rem;
+  font-size: .8rem; color: var(--txm);
+  padding: .3rem .75rem;
+  border-radius: 999px;
+  border: 1px solid var(--bdr);
+  background: var(--surf2);
+  transition: all var(--tr);
+}
+.nav-back:hover { color: var(--tx); border-color: var(--ip); background: var(--is); }
+
+.nav-logo {
+  font-family: var(--fd);
+  font-size: 1.05rem;
+  font-weight: 700;
+  background: var(--grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: .02em;
+}
+
+.theme-btn {
+  width: 38px; height: 38px;
+  border-radius: 999px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--surf);
+  border: 1px solid var(--bdr);
+  color: var(--txm);
+  transition: all var(--tr);
+}
+.theme-btn:hover { color: var(--tx); border-color: var(--ip); background: var(--is); box-shadow: 0 0 0 4px var(--is); }
+
+/* ===== HERO ===== */
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center;
+  overflow: hidden;
+  padding-top: 5rem;
+}
+
+#starCanvas {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  z-index: 0;
+}
+[data-theme="light"] #starCanvas { opacity: 0.12; }
+
+.orb-layer {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  width: min(80vw, 680px);
+  height: min(80vw, 680px);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+}
+.orb-i {
+  width: 58%; height: 58%;
+  top: 4%; left: 2%;
+  background: radial-gradient(circle, var(--ip) 0%, transparent 70%);
+  opacity: .55;
+  animation: oF 10s ease-in-out infinite alternate;
+}
+.orb-e {
+  width: 58%; height: 58%;
+  bottom: 4%; right: 2%;
+  background: radial-gradient(circle, var(--ep) 0%, transparent 70%);
+  opacity: .5;
+  animation: oF 10s ease-in-out 5s infinite alternate;
+}
+.orb-m {
+  width: 38%; height: 38%;
+  top: 31%; left: 31%;
+  background: radial-gradient(circle, rgba(59,130,246,.45) 0%, rgba(16,185,129,.4) 100%);
+  opacity: .35;
+  animation: oF 14s ease-in-out 2.5s infinite alternate;
+}
+@keyframes oF {
+  from { transform: translate(0,0) scale(1); }
+  to   { transform: translate(18px,-22px) scale(1.1); }
+}
+
+.hero-content { position: relative; z-index: 2; max-width: 860px; padding-inline: clamp(1rem, 4vw, 2rem); }
+
+.hero-badge {
+  display: inline-flex; align-items: center; gap: .5rem;
+  padding: .35rem 1rem;
+  border-radius: 999px;
+  background: var(--is);
+  border: 1px solid rgba(59,130,246,.35);
+  font-size: var(--tx);
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--ipb);
+  margin-bottom: 1.5rem;
+  animation: fU .8s var(--ease) both;
+}
+
+.hero-title {
+  font-size: var(--hero);
+  font-weight: 700;
+  letter-spacing: -.03em;
+  margin-bottom: 1rem;
+  animation: fU .8s var(--ease) .1s both;
+}
+.ti { color: var(--ipb); }
+.tx-sep { color: var(--txf); font-weight: 300; margin: 0 .05em; }
+.te { color: var(--epb); }
+
+.hero-sub {
+  font-family: var(--fd);
+  font-size: var(--txl);
+  font-weight: 500;
+  font-style: italic;
+  color: var(--txm);
+  margin-bottom: 1.25rem;
+  animation: fU .8s var(--ease) .2s both;
+}
+
+.hero-desc {
+  font-size: var(--tb);
+  color: var(--txm);
+  max-width: 540px;
+  margin: 0 auto 2.5rem;
+  line-height: 1.8;
+  animation: fU .8s var(--ease) .3s both;
+}
+
+.hero-stats {
+  display: flex; justify-content: center; gap: 2.5rem; flex-wrap: wrap;
+  animation: fU .8s var(--ease) .45s both;
+}
+.hstat { text-align: center; }
+.hstat-n {
+  font-family: var(--fd);
+  font-size: 2.25rem;
+  font-weight: 700;
+  background: var(--grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+}
+.hstat-l { font-size: var(--tx); color: var(--txf); margin-top: .25rem; text-transform: uppercase; letter-spacing: .08em; }
+
+.scroll-hint {
+  position: absolute; bottom: 2rem; left: 50%;
+  transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: .5rem;
+  color: var(--txf); font-size: var(--tx);
+  z-index: 2;
+  animation: sB 2.2s ease-in-out infinite, fU 1s var(--ease) .8s both;
+}
+@keyframes sB {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50%       { transform: translateX(-50%) translateY(7px); }
+}
+@keyframes fU {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== SECTION HEADER ===== */
+.sh { text-align: center; margin-bottom: clamp(2.5rem, 5vw, 4.5rem); }
+.stag {
+  display: inline-block;
+  font-size: var(--tx); font-weight: 700;
+  text-transform: uppercase; letter-spacing: .15em;
+  padding: .3rem 1rem;
+  border-radius: 999px;
+  background: var(--surf2);
+  border: 1px solid var(--bdr);
+  color: var(--txm);
+  margin-bottom: 1rem;
+}
+.stitle {
+  font-size: var(--t2xl);
+  font-weight: 700;
+  letter-spacing: -.02em;
+  margin-bottom: .875rem;
+}
+.ssep {
+  width: 56px; height: 3px;
+  background: var(--grad);
+  border-radius: 999px;
+  margin: 0 auto .875rem;
+}
+.sdesc { font-size: var(--tb); color: var(--txm); max-width: 540px; margin: 0 auto; line-height: 1.75; }
+
+/* ===== REVEAL ===== */
+.r { opacity: 0; transform: translateY(28px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
+.r.in { opacity: 1; transform: none; }
+.d1 { transition-delay: .1s; }
+.d2 { transition-delay: .2s; }
+.d3 { transition-delay: .3s; }
+.d4 { transition-delay: .4s; }
+
+/* ===== KPI GAUGES ===== */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(155px, 1fr));
+  gap: 1rem;
+}
+
+.kpi-card {
+  background: var(--surf);
+  border: 1px solid var(--bdr);
+  border-radius: 1.5rem;
+  padding: 1.5rem 1rem 1.25rem;
+  display: flex; flex-direction: column; align-items: center; text-align: center; gap: .75rem;
+  transition: all var(--tr);
+  position: relative; overflow: hidden;
+  cursor: default;
+}
+.kpi-card::after {
+  content: '';
+  position: absolute; inset: 0;
+  border-radius: inherit;
+  background: var(--grad);
+  opacity: 0;
+  transition: opacity var(--tr);
+}
+.kpi-card:hover { transform: translateY(-3px); box-shadow: var(--sh2); border-color: rgba(59,130,246,.4); }
+.kpi-card:hover::after { opacity: .06; }
+
+.g-wrap { position: relative; width: 108px; height: 108px; flex-shrink: 0; z-index: 1; }
+.g-wrap canvas { width: 108px !important; height: 108px !important; }
+.g-val {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--fd); font-size: 1.2rem; font-weight: 700;
+}
+.g-val sup { font-size: .65rem; font-weight: 400; color: var(--txm); margin-top: -.2rem; }
+.kpi-lbl { font-size: .775rem; font-weight: 500; color: var(--txm); line-height: 1.3; max-width: 130px; z-index: 1; }
+
+/* ===== MIRROR ===== */
+.mirror-box {
+  background: var(--surf);
+  border: 1px solid var(--bdr);
+  border-radius: 1.75rem;
+  padding: clamp(1.5rem, 4vw, 3rem);
+  overflow: hidden;
+}
+.mirror-grid {
+  display: grid;
+  grid-template-columns: 1fr 72px 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+@media (max-width: 680px) {
+  .mirror-grid { grid-template-columns: 1fr; }
+  .mcol-c { display: none; }
+}
+.mcol { display: flex; flex-direction: column; gap: .875rem; }
+.mcol-title {
+  font-family: var(--fd); font-size: 1.4rem; font-weight: 700;
+  text-align: center; padding-bottom: 1rem; margin-bottom: .25rem;
+  border-bottom: 2px solid var(--bdr);
+}
+.mcol-title.mi { color: var(--ip); }
+.mcol-title.me { color: var(--ep); }
+
+.func-row {
+  display: flex; gap: .75rem; align-items: flex-start;
+  padding: .875rem;
+  border-radius: 1rem;
+  background: var(--surf2);
+  border: 1px solid var(--bdr);
+  transition: all var(--tr);
+}
+.mcol:first-child .func-row:hover { border-color: var(--ip); background: var(--is); transform: translateX(4px); }
+.mcol:last-child  .func-row:hover { border-color: var(--ep); background: var(--es); transform: translateX(-4px); }
+
+.fc {
+  flex-shrink: 0; width: 42px; height: 42px;
+  border-radius: .625rem;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--fd); font-weight: 700; font-size: .875rem; color: #fff;
+}
+.fc.fi { background: var(--ip); }
+.fc.fe { background: var(--ep); }
+
+.frole { font-size: .68rem; font-weight: 600; text-transform: uppercase; letter-spacing: .1em; color: var(--txf); margin-bottom: .2rem; }
+.fname { font-weight: 600; font-size: .85rem; margin-bottom: .2rem; }
+.fdesc { font-size: .755rem; color: var(--txm); line-height: 1.5; }
+
+.mcol-c {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 2.6rem; padding-top: 5.5rem;
+  color: var(--txf); font-size: 1.25rem;
+}
+
+/* ===== STRENGTHS & CHALLENGES ===== */
+.sc-wrap {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+}
+@media (max-width: 680px) { .sc-wrap { grid-template-columns: 1fr; } }
+
+.sc-col-title {
+  display: flex; align-items: center; gap: .75rem;
+  font-family: var(--fd); font-size: 1.2rem; font-weight: 700;
+  margin-bottom: 1.125rem;
+}
+.ic-wrap {
+  width: 32px; height: 32px; border-radius: .625rem;
+  display: flex; align-items: center; justify-content: center; font-size: .95rem;
+}
+.ic-ok  { background: var(--oks); color: var(--ok); }
+.ic-err { background: var(--errs); color: var(--err); }
+
+.sc-item {
+  display: flex; gap: .75rem; align-items: flex-start;
+  padding: .875rem;
+  border-radius: 1rem;
+  background: var(--surf);
+  border: 1px solid var(--bdr);
+  border-left-width: 3px;
+  margin-bottom: .6rem;
+  transition: all var(--tr);
+}
+.sc-item.str  { border-left-color: var(--ok); }
+.sc-item.chl  { border-left-color: var(--err); }
+.sc-item:hover { transform: translateX(3px); box-shadow: var(--sh1); }
+.sc-ico {
+  width: 30px; height: 30px; border-radius: .5rem;
+  display: flex; align-items: center; justify-content: center; font-size: .875rem; flex-shrink: 0;
+}
+.sc-item.str .sc-ico { background: var(--oks); }
+.sc-item.chl .sc-ico { background: var(--errs); }
+.sc-t { font-weight: 600; font-size: .855rem; margin-bottom: .2rem; }
+.sc-d { font-size: .77rem; color: var(--txm); line-height: 1.55; }
+
+/* ===== COMMUNICATION ===== */
+.comm-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+@media (max-width: 680px) { .comm-grid { grid-template-columns: 1fr; } }
+
+.comm-card {
+  background: var(--surf);
+  border: 1px solid var(--bdr);
+  border-radius: 1.75rem;
+  padding: 1.5rem;
+}
+.comm-card h3 {
+  font-size: 1.05rem; font-weight: 600;
+  margin-bottom: 1.5rem; text-align: center;
+  font-family: var(--fd);
+}
+.radar-wrap { max-width: 370px; margin: 0 auto; }
+
+.ctips { display: flex; flex-direction: column; gap: .75rem; }
+.ctip {
+  display: flex; gap: .75rem; align-items: flex-start;
+  padding: .875rem;
+  border-radius: .875rem;
+  background: var(--surf2); border: 1px solid var(--bdr);
+  transition: all var(--tr);
+}
+.ctip:hover { background: var(--surfo); border-color: var(--ip); }
+.ctip-ic {
+  width: 30px; height: 30px; border-radius: 999px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: .8rem; flex-shrink: 0;
+  background: var(--is); color: var(--ip);
+}
+.ctip-txt { font-size: .82rem; color: var(--txm); line-height: 1.6; }
+.ctip-txt strong { color: var(--tx); }
+
+/* ===== STRESS ===== */
+.stress-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+@media (max-width: 680px) { .stress-grid { grid-template-columns: 1fr; } }
+
+.stress-card {
+  background: var(--surf);
+  border: 1px solid var(--bdr);
+  border-radius: 1.75rem;
+  padding: 1.75rem;
+  position: relative; overflow: hidden;
+}
+.stress-card::after {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 3px;
+}
+.sc-e::after { background: var(--ep); box-shadow: 0 0 12px rgba(16,185,129,.5); }
+.sc-i::after { background: var(--ip); box-shadow: 0 0 12px rgba(59,130,246,.5); }
+
+.sh-row {
+  display: flex; align-items: center; gap: .75rem;
+  margin-bottom: 1.5rem; padding-bottom: 1rem;
+  border-bottom: 1px solid var(--div);
+}
+.sbadge { font-family: var(--fd); font-weight: 700; font-size: 1.5rem; }
+.sbadge.e { color: var(--ep); }
+.sbadge.i { color: var(--ip); }
+.snick { font-size: .8rem; color: var(--txm); font-style: italic; }
+
+.ssub {
+  font-size: .73rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: .1em; margin-bottom: .625rem;
+  display: flex; align-items: center; gap: .4rem;
+}
+.ssub.ok  { color: var(--ok); }
+.ssub.err { color: var(--err); }
+
+.slist { list-style: none; margin-bottom: 1.25rem; }
+.slist li {
+  display: flex; align-items: center; gap: .6rem;
+  font-size: .84rem; color: var(--txm);
+  padding: .3rem 0;
+  border-bottom: 1px solid var(--div);
+}
+.slist li:last-child { border-bottom: none; }
+.sdot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+.slist.ok-l .sdot  { background: var(--ok); }
+.slist.err-l .sdot { background: var(--err); }
+
+/* ===== LOVE LANGUAGES ===== */
+.love-wrap { display: grid; grid-template-columns: 1fr auto 1fr; gap: 2rem; align-items: start; }
+@media (max-width: 680px) {
+  .love-wrap { grid-template-columns: 1fr; }
+  .love-center { order: -1; }
+}
+.love-col-t {
+  font-family: var(--fd); font-size: 1.4rem; font-weight: 700;
+  text-align: center; padding-bottom: 1rem; margin-bottom: .75rem;
+  border-bottom: 2px solid var(--bdr);
+}
+.love-col-t.e { color: var(--ep); }
+.love-col-t.i { color: var(--ip); }
+.love-row {
+  display: flex; align-items: center; gap: .75rem;
+  padding: .7rem 1rem;
+  border-radius: .875rem; background: var(--surf); border: 1px solid var(--bdr);
+  margin-bottom: .5rem; font-size: .875rem; font-weight: 500;
+  transition: all var(--tr);
+}
+.love-row.sh { border-color: rgba(59,130,246,.4); background: var(--is); }
+.love-row:hover { transform: scale(1.025); box-shadow: var(--sh1); }
+.ln { font-family: var(--fd); font-weight: 700; font-size: 1.2rem; color: var(--txf); width: 22px; text-align: center; }
+.le { font-size: 1.05rem; }
+.love-center {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: 2rem 1rem; text-align: center; gap: .75rem;
+}
+.love-orb {
+  width: 72px; height: 72px; border-radius: 50%;
+  background: var(--grad);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2rem;
+  box-shadow: var(--gi), var(--ge);
+  animation: oF 6s ease-in-out infinite alternate;
+}
+.love-lbl { font-family: var(--fd); font-size: .8rem; color: var(--txm); max-width: 130px; line-height: 1.4; }
+
+/* ===== TIPS CARDS ===== */
+.tips-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
+  gap: 1rem;
+}
+.tip-card {
+  background: var(--surf); border: 1px solid var(--bdr); border-radius: 1.5rem;
+  padding: 1.5rem;
+  display: flex; flex-direction: column; gap: .625rem;
+  transition: all var(--tr);
+}
+.tip-card:hover { box-shadow: var(--sh2); transform: translateY(-3px); border-color: rgba(59,130,246,.4); }
+.tip-n {
+  font-family: var(--fd); font-size: 2.25rem; font-weight: 700;
+  background: var(--grad);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  line-height: 1;
+}
+.tip-t { font-weight: 600; font-size: .9rem; }
+.tip-d { font-size: .8rem; color: var(--txm); line-height: 1.65; }
+
+/* ===== DUO ===== */
+.duo-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
+@media (max-width: 680px) { .duo-grid { grid-template-columns: 1fr; } }
+.duo-card {
+  background: var(--surf); border: 1px solid var(--bdr); border-radius: 1.5rem;
+  padding: 1.5rem; text-align: center;
+  transition: all var(--tr);
+}
+.duo-card:hover { box-shadow: var(--sh2); transform: translateY(-2px); }
+.duo-pair { display: flex; align-items: center; justify-content: center; gap: .75rem; flex-wrap: wrap; margin-bottom: .875rem; }
+.dr {
+  font-family: var(--fd); font-weight: 700; font-size: .875rem;
+  padding: .35rem .875rem; border-radius: 999px;
+}
+.dr.e { background: var(--es); color: var(--ep); border: 1px solid rgba(16,185,129,.25); }
+.dr.i { background: var(--is); color: var(--ip); border: 1px solid rgba(59,130,246,.25); }
+.duo-plus { font-size: 1.25rem; color: var(--txf); }
+.duo-d { font-size: .82rem; color: var(--txm); line-height: 1.65; }
+
+/* ===== FOOTER ===== */
+footer {
+  border-top: 1px solid var(--div);
+  padding: 2.5rem clamp(1rem, 4vw, 2rem);
+  text-align: center;
+  position: relative; z-index: 1;
+}
+.footer-inner { max-width: var(--mw); margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: .75rem; }
+.footer-brand {
+  font-family: var(--fd); font-weight: 700;
+  background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  font-size: 1.1rem;
+}
+.footer-nav { display: flex; gap: 1.5rem; flex-wrap: wrap; justify-content: center; }
+.footer-nav a {
+  font-size: .8rem; color: var(--txm);
+  padding: .3rem .75rem; border-radius: 999px;
+  border: 1px solid var(--bdr); background: var(--surf2);
+  transition: all var(--tr);
+}
+.footer-nav a:hover { color: var(--tx); border-color: var(--ip); }
+.footer-src { font-size: .77rem; color: var(--txf); max-width: 560px; line-height: 1.75; }
+</style>
+</head>
+
+<body>
+
+<!-- Scroll progress -->
+<div id="sp"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-left">
+    <a href="../index.html" class="nav-back">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      Tous les pairs
+    </a>
+    <div class="nav-logo">INTJ × ENTP</div>
+  </div>
+  <button class="theme-btn" id="tb" aria-label="Changer le thème">
+    <svg id="tic" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+    </svg>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <canvas id="starCanvas"></canvas>
+  <div class="orb-layer">
+    <div class="orb orb-i"></div>
+    <div class="orb orb-e"></div>
+    <div class="orb orb-m"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-badge">✦ L'Alliance Stratégique NT ✦</div>
+    <h1 class="hero-title">
+      <span class="ti">INTJ</span><span class="tx-sep"> × </span><span class="te">ENTP</span>
+    </h1>
+    <p class="hero-sub">L'architecte rencontre le débatteur</p>
+    <p class="hero-desc">
+      Deux esprits NT qui se défient et se stimulent. Une relation construite sur
+      l'acuité intellectuelle, le respect de la compétence, et une tension créative
+      qui peut propulser — ou épuiser — selon comment elle est canalisée.
+    </p>
+    <div class="hero-stats">
+      <div class="hstat"><div class="hstat-n" data-t="78">0</div><div class="hstat-l">% Compatibilité</div></div>
+      <div class="hstat"><div class="hstat-n" data-t="2">0</div><div class="hstat-l">Axes cognitifs communs</div></div>
+      <div class="hstat"><div class="hstat-n" data-t="8">0</div><div class="hstat-l">Clés de succès</div></div>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 13l5 5 5-5M7 6l5 5 5-5"/></svg>
+    Défiler
+  </div>
+</section>
+
+<!-- COMPATIBILITY -->
+<section id="compat">
+  <div class="wrap">
+    <div class="sh r">
+      <span class="stag">Compatibilité</span>
+      <h2 class="stitle">Vue d'ensemble</h2>
+      <div class="ssep"></div>
+      <p class="sdesc">Dix dimensions clés analysées à travers la psychologie des types cognitifs et la dynamique relationnelle NT.</p>
+    </div>
+    <div class="kpi-grid" id="kpiGrid"></div>
+  </div>
+</section>
+
+<!-- COGNITIVE MIRROR -->
+<section id="mirror">
+  <div class="wrap">
+    <div class="sh r">
+      <span class="stag">Fonctions cognitives</span>
+      <h2 class="stitle">Intuition vs Pensée : l'axe commun</h2>
+      <div class="ssep"></div>
+      <p class="sdesc">Ni et Ne partagent le même territoire de l'abstraction, mais l'un creuse en profondeur là où l'autre multiplie les directions. Te et Ti forment le même désaccord sur la nature de la rigueur.</p>
+    </div>
+    <div class="mirror-box r">
+      <div class="mirror-grid">
+        <!-- INTJ -->
+        <div class="mcol">
+          <div class="mcol-title mi">INTJ</div>
+          <div class="func-row"><div class="fc fi">Ni</div><div><div class="frole">Dominante</div><div class="fname">Intuition introvertie</div><div class="fdesc">Vision convergente : identifie la trajectoire la plus probable et s'y engage avec conviction</div></div></div>
+          <div class="func-row"><div class="fc fi">Te</div><div><div class="frole">Auxiliaire</div><div class="fname">Pensée extravertie</div><div class="fdesc">Efficacité systémique, décision rapide, structures et résultats mesurables</div></div></div>
+          <div class="func-row"><div class="fc fi">Fi</div><div><div class="frole">Tertiaire</div><div class="fname">Sentiment introverti</div><div class="fdesc">Boussole éthique personnelle, valeurs profondes mais rarement exprimées</div></div></div>
+          <div class="func-row"><div class="fc fi">Se</div><div><div class="frole">Inférieure</div><div class="fname">Sensation extravertie</div><div class="fdesc">Rapport au présent sensoriel difficile sous pression ; point de vulnérabilité</div></div></div>
+        </div>
+        <!-- Center -->
+        <div class="mcol-c">
+          <span>⇄</span><span>⇄</span><span>⇄</span><span>⇄</span>
+        </div>
+        <!-- ENTP -->
+        <div class="mcol">
+          <div class="mcol-title me">ENTP</div>
+          <div class="func-row"><div class="fc fe">Ne</div><div><div class="frole">Dominante</div><div class="fname">Intuition extravertie</div><div class="fdesc">Vision divergente : génère des connexions inattendues, explore toutes les ramifications possibles</div></div></div>
+          <div class="func-row"><div class="fc fe">Ti</div><div><div class="frole">Auxiliaire</div><div class="fname">Pensée introvertie</div><div class="fdesc">Logique interne autonome, analyse des systèmes pour en saisir les principes fondateurs</div></div></div>
+          <div class="func-row"><div class="fc fe">Fe</div><div><div class="frole">Tertiaire</div><div class="fname">Sentiment extraverti</div><div class="fdesc">Sensibilité au groupe, humour social, empathie performative parfois maladroite</div></div></div>
+          <div class="func-row"><div class="fc fe">Si</div><div><div class="frole">Inférieure</div><div class="fname">Sensation introvertie</div><div class="fdesc">Mémoire des précédents et des routines ; tend à s'activer sous stress comme inquiétude rétrospective</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STRENGTHS & CHALLENGES -->
+<section id="sc">
+  <div class="wrap">
+    <div class="sh r">
+      <span class="stag">Analyse</span>
+      <h2 class="stitle">Forces & Défis</h2>
+      <div class="ssep"></div>
+      <p class="sdesc">Ce qui rend ce duo intellectuellement électrique — et ce qui peut le faire court-circuiter.</p>
+    </div>
+    <div class="sc-wrap">
+      <div class="r">
+        <div class="sc-col-title"><span class="ic-wrap ic-ok">✦</span> Forces</div>
+        <div class="sc-item str"><div class="sc-ico">🧠</div><div><div class="sc-t">Stimulation intellectuelle mutuelle</div><div class="sc-d">Chacun trouve en l'autre un interlocuteur digne de son niveau. Les conversations peuvent durer des heures sans jamais s'appauvrir.</div></div></div>
+        <div class="sc-item str"><div class="sc-ico">🎯</div><div><div class="sc-t">Respect de la compétence</div><div class="sc-d">Ni l'un ni l'autre ne supporte la médiocrité. Quand chacun reconnaît la maîtrise de l'autre, le respect est profond et sincère.</div></div></div>
+        <div class="sc-item str"><div class="sc-ico">🔭</div><div><div class="sc-t">Vision commune sur le long terme</div><div class="sc-d">Tous deux pensent en systèmes et en scénarios futurs. Leurs discussions stratégiques sont d'une précision rare.</div></div></div>
+        <div class="sc-item str"><div class="sc-ico">🏗️</div><div><div class="sc-t">Complémentarité exécution / exploration</div><div class="sc-d">L'INTJ sait décider et construire. L'ENTP sait imaginer et remettre en question. Ensemble, ils couvrent l'arc complet de l'innovation.</div></div></div>
+        <div class="sc-item str"><div class="sc-ico">🧩</div><div><div class="sc-t">Indépendance mutuelle saine</div><div class="sc-d">Aucun des deux n'est fusionnel. Ils respectent naturellement l'espace intellectuel et émotionnel de l'autre.</div></div></div>
+        <div class="sc-item str"><div class="sc-ico">⚔️</div><div><div class="sc-t">Débats comme affûtage intellectuel</div><div class="sc-d">Quand ils alignent leurs intentions, un désaccord devient une exploration fructueuse plutôt qu'un conflit personnel.</div></div></div>
+        <div class="sc-item str"><div class="sc-ico">🚫</div><div><div class="sc-t">Rejet partagé du superficiel</div><div class="sc-d">Tous deux rejettent les conventions sociales vides et les conversations de surface. Le filtre est identique.</div></div></div>
+        <div class="sc-item str"><div class="sc-ico">📐</div><div><div class="sc-t">Franchise comme langue commune</div><div class="sc-d">Deux types directs qui préfèrent l'honnêteté inconfortable à la diplomatie creuse. Pas de manipulation, pas de sous-entendus.</div></div></div>
+      </div>
+      <div class="r d2">
+        <div class="sc-col-title"><span class="ic-wrap ic-err">◆</span> Défis</div>
+        <div class="sc-item chl"><div class="sc-ico">🔒</div><div><div class="sc-t">Clôture vs exploration perpétuelle</div><div class="sc-d">L'INTJ a besoin de décider et d'avancer. L'ENTP veut continuer à explorer les alternatives. Cette friction peut bloquer des projets entiers.</div></div></div>
+        <div class="sc-item chl"><div class="sc-ico">🗣️</div><div><div class="sc-t">Le débat perçu comme attaque</div><div class="sc-d">L'ENTP débat pour affûter sa pensée, sans intention agressive. L'INTJ, moins habitué à remettre sa vision en question, peut se fermer.</div></div></div>
+        <div class="sc-item chl"><div class="sc-ico">❄️</div><div><div class="sc-t">Froideur émotionnelle partagée</div><div class="sc-d">Fi tertiaire chez l'INTJ, Fe tertiaire chez l'ENTP : l'intimité émotionnelle ne vient pas naturellement pour l'un ou l'autre.</div></div></div>
+        <div class="sc-item chl"><div class="sc-ico">🔪</div><div><div class="sc-t">Critique sans filtre</div><div class="sc-d">Deux types directs qui peuvent blesser sans le réaliser. La franchise non calibrée devient blessure dans une relation intime.</div></div></div>
+        <div class="sc-item chl"><div class="sc-ico">📉</div><div><div class="sc-t">Le quotidien comme angle mort commun</div><div class="sc-d">Ni l'un ni l'autre n'est naturellement orienté vers les détails pratiques : finances, logistique, routines. Cela demande un effort conscient.</div></div></div>
+        <div class="sc-item chl"><div class="sc-ico">🪨</div><div><div class="sc-t">Rigidité de l'INTJ sous pression</div><div class="sc-d">Sous stress, Ni + Te peut devenir tunnel vision. L'INTJ peut rejeter les idées de l'ENTP comme des distractions non pertinentes.</div></div></div>
+        <div class="sc-item chl"><div class="sc-ico">🌀</div><div><div class="sc-t">Dispersion de l'ENTP</div><div class="sc-d">L'INTJ cherche la convergence, l'ENTP multiplie les tangentes. Cette asymétrie de rythme peut générer frustration et incompréhension.</div></div></div>
+        <div class="sc-item chl"><div class="sc-ico">🪞</div><div><div class="sc-t">Vulnérabilité comme terrain miné</div><div class="sc-d">Montrer une fragilité est difficile pour les deux. Sans effort délibéré, la relation peut rester en surface sur le plan émotionnel.</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMMUNICATION -->
+<section id="comm">
+  <div class="wrap">
+    <div class="sh r">
+      <span class="stag">Communication</span>
+      <h2 class="stitle">Dynamiques de communication</h2>
+      <div class="ssep"></div>
+      <p class="sdesc">Deux styles à forte densité conceptuelle, mais avec des vitesses et des finalités radicalement différentes.</p>
+    </div>
+    <div class="comm-grid">
+      <div class="comm-card r">
+        <h3>Profils comparés</h3>
+        <div class="radar-wrap"><canvas id="radarChart"></canvas></div>
+      </div>
+      <div class="r d2">
+        <h3 style="font-family:var(--fd);font-size:1.05rem;font-weight:600;margin-bottom:1.25rem;">Conseils communication</h3>
+        <div class="ctips">
+          <div class="ctip"><div class="ctip-ic">⏸️</div><div class="ctip-txt"><strong>ENTP :</strong> Marquez des pauses intentionnelles. L'INTJ ne traite pas l'information à voix haute — il a besoin de temps silencieux pour formuler une réponse de fond.</div></div>
+          <div class="ctip"><div class="ctip-ic">🎙️</div><div class="ctip-txt"><strong>INTJ :</strong> Résistez à l'envie de clôturer prématurément. L'ENTP ne remet pas votre vision en question par malveillance — il explore des angles que vous n'avez peut-être pas vus.</div></div>
+          <div class="ctip"><div class="ctip-ic">🏆</div><div class="ctip-txt"><strong>Terrain gagnant :</strong> Quand l'INTJ pose un cadre clair et que l'ENTP y apporte ses variations, le résultat dépasse ce que chacun aurait produit seul.</div></div>
+          <div class="ctip"><div class="ctip-ic">⚠️</div><div class="ctip-txt"><strong>Zone de danger :</strong> Quand le débat glisse vers la compétition d'ego. Les deux types peuvent devenir intransigeants. Distinguez "avoir raison" de "comprendre l'autre".</div></div>
+          <div class="ctip"><div class="ctip-ic">💬</div><div class="ctip-txt"><strong>Règle d'or :</strong> Dites explicitement quand vous avez besoin d'être entendu plutôt que challengé. Ces deux types ne le devinent pas spontanément.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STRESS & NEEDS -->
+<section id="stress">
+  <div class="wrap">
+    <div class="sh r">
+      <span class="stag">Bien-être</span>
+      <h2 class="stitle">Stress & Besoins</h2>
+      <div class="ssep"></div>
+      <p class="sdesc">Comprendre comment chacun réagit sous pression pour éviter les spirales négatives et mieux se soutenir.</p>
+    </div>
+    <div class="stress-grid">
+      <!-- ENTP -->
+      <div class="stress-card sc-e r">
+        <div class="sh-row">
+          <span class="sbadge e">ENTP</span>
+          <span class="snick">Le Débatteur iconoclaste</span>
+        </div>
+        <div class="ssub ok">✦ Ce qui l'énergise</div>
+        <ul class="slist ok-l" role="list">
+          <li><span class="sdot"></span>Débats d'idées sans tabou ni conclusion imposée</li>
+          <li><span class="sdot"></span>Défis intellectuels complexes et nouveaux</li>
+          <li><span class="sdot"></span>Liberté de changer de cap sans justification</li>
+          <li><span class="sdot"></span>Interlocuteurs capables de tenir tête</li>
+          <li><span class="sdot"></span>Connexions inattendues entre domaines distincts</li>
+        </ul>
+        <div class="ssub err">◆ Ce qui le stresse</div>
+        <ul class="slist err-l" role="list">
+          <li><span class="sdot"></span>Structure rigide et micromanagement</li>
+          <li><span class="sdot"></span>Sentiment d'être enfermé dans une routine</li>
+          <li><span class="sdot"></span>Incompétence perçue chez les autres</li>
+          <li><span class="sdot"></span>Obligation de finir ce qui l'ennuie</li>
+          <li><span class="sdot"></span>Inquiétude obsessionnelle (Si inférieur sous stress)</li>
+        </ul>
+      </div>
+      <!-- INTJ -->
+      <div class="stress-card sc-i r d2">
+        <div class="sh-row">
+          <span class="sbadge i">INTJ</span>
+          <span class="snick">L'Architecte stratège</span>
+        </div>
+        <div class="ssub ok">✦ Ce qui l'énergise</div>
+        <ul class="slist ok-l" role="list">
+          <li><span class="sdot"></span>Projets complexes avec une vision à long terme</li>
+          <li><span class="sdot"></span>Autonomie totale dans l'exécution</li>
+          <li><span class="sdot"></span>Systèmes efficaces et bien conçus</li>
+          <li><span class="sdot"></span>Maîtrise progressive d'un domaine précis</li>
+          <li><span class="sdot"></span>Solitude productive et concentration profonde</li>
+        </ul>
+        <div class="ssub err">◆ Ce qui le stresse</div>
+        <ul class="slist err-l" role="list">
+          <li><span class="sdot"></span>Chaos et inefficacité systémique</li>
+          <li><span class="sdot"></span>Interruptions répétées de la concentration</li>
+          <li><span class="sdot"></span>Devoir gérer les émotions des autres</li>
+          <li><span class="sdot"></span>Plans constamment remis en question</li>
+          <li><span class="sdot"></span>Hédonisme impulsif (Se inférieur sous stress)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOVE LANGUAGES -->
+<section id="love">
+  <div class="wrap">
+    <div class="sh r">
+      <span class="stag">Amour</span>
+      <h2 class="stitle">Langages de l'amour</h2>
+      <div class="ssep"></div>
+      <p class="sdesc">Pour deux types peu expressifs sur le plan affectif, comprendre comment l'autre donne et reçoit l'amour est crucial.</p>
+    </div>
+    <div class="love-wrap r">
+      <div>
+        <div class="love-col-t e">ENTP</div>
+        <div class="love-row"><span class="ln">1</span><span class="le">💬</span><span>Paroles valorisantes</span></div>
+        <div class="love-row sh"><span class="ln">2</span><span class="le">⏳</span><span>Moments de qualité</span></div>
+        <div class="love-row"><span class="ln">3</span><span class="le">🛠️</span><span>Actes de service</span></div>
+      </div>
+      <div class="love-center">
+        <div class="love-orb">🤝</div>
+        <div class="love-lbl">Moments de qualité intellectuelle — leur terrain commun</div>
+      </div>
+      <div>
+        <div class="love-col-t i">INTJ</div>
+        <div class="love-row"><span class="ln">1</span><span class="le">🛠️</span><span>Actes de service</span></div>
+        <div class="love-row sh"><span class="ln">2</span><span class="le">⏳</span><span>Moments de qualité</span></div>
+        <div class="love-row"><span class="ln">3</span><span class="le">💬</span><span>Paroles valorisantes</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIPS -->
+<section id="tips">
+  <div class="wrap">
+    <div class="sh r">
+      <span class="stag">Guide pratique</span>
+      <h2 class="stitle">8 clés pour réussir</h2>
+      <div class="ssep"></div>
+      <p class="sdesc">Des leviers concrets pour que la tension intellectuelle reste créatrice plutôt que destructrice.</p>
+    </div>
+    <div class="tips-grid">
+      <div class="tip-card r"><div class="tip-n">01</div><div class="tip-t">Distinguez débat et conflit</div><div class="tip-d">L'ENTP débat pour penser, pas pour blesser. L'INTJ doit apprendre à recevoir la contradiction sans se fermer. Posez la règle : challenger une idée n'est pas attaquer une personne.</div></div>
+      <div class="tip-card r d1"><div class="tip-n">02</div><div class="tip-t">Négociez les délais de décision</div><div class="tip-d">L'INTJ a besoin de clôture, l'ENTP a besoin d'explorer. Fixez ensemble un temps d'exploration borné — puis décidez. Cette règle simple évite des paralysies chroniques.</div></div>
+      <div class="tip-card r d2"><div class="tip-n">03</div><div class="tip-t">Pratiquez la vulnérabilité délibérée</div><div class="tip-d">Aucun des deux ne vient naturellement à l'expression émotionnelle. Accordez-vous le droit d'être humains l'un avec l'autre. Une relation durable nécessite plus que l'échange intellectuel.</div></div>
+      <div class="tip-card r d3"><div class="tip-n">04</div><div class="tip-t">Exprimez l'admiration explicitement</div><div class="tip-d">Ces types ne cherchent pas la flatterie, mais ils ont besoin de savoir qu'ils sont respectés. Dites ce que vous appréciez dans la pensée de l'autre — sans attendre que ce soit évident.</div></div>
+      <div class="tip-card r"><div class="tip-n">05</div><div class="tip-t">Construisez des systèmes pour le quotidien</div><div class="tip-d">Ni l'un ni l'autre n'est orienté vers le détail pratique. Plutôt que d'espérer que ça se règle seul, créez des routines simples et explicites pour les finances, le ménage, la logistique.</div></div>
+      <div class="tip-card r d1"><div class="tip-n">06</div><div class="tip-t">Respectez les rythmes de traitement</div><div class="tip-d">L'ENTP pense à voix haute et vite. L'INTJ traite en silence et lentement. Ne confondez pas ce silence avec un désintérêt — il précède souvent la réponse la plus aboutie.</div></div>
+      <div class="tip-card r d2"><div class="tip-n">07</div><div class="tip-t">Choisissez le bon moment pour critiquer</div><div class="tip-d">Deux types directs peuvent blesser sans le réaliser. Calibrez le moment, le ton et le cadre. En public, soutenez-vous. En privé, soyez aussi honnêtes que vous le souhaitez.</div></div>
+      <div class="tip-card r d3"><div class="tip-n">08</div><div class="tip-t">Cultivez la tendresse activement</div><div class="tip-d">L'affection physique et verbale ne vient pas spontanément pour ces deux types. Elle demande un effort conscient — mais cet effort, répété, construit une intimité réelle et durable.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- DYNAMIC DUO -->
+<section id="duo">
+  <div class="wrap">
+    <div class="sh r">
+      <span class="stag">Complémentarité</span>
+      <h2 class="stitle">Le duo dynamique</h2>
+      <div class="ssep"></div>
+      <p class="sdesc">Quand leurs forces s'articulent plutôt que se confrontent, INTJ et ENTP forment un partenariat redoutablement efficace.</p>
+    </div>
+    <div class="duo-grid">
+      <div class="duo-card r"><div class="duo-pair"><div class="dr i">Architecte</div><div class="duo-plus">+</div><div class="dr e">Avocat du diable</div></div><div class="duo-d">L'INTJ construit un plan solide. L'ENTP en teste chaque hypothèse. Le résultat : une vision plus robuste que ce que chacun aurait produit seul.</div></div>
+      <div class="duo-card r d1"><div class="duo-pair"><div class="dr i">Décideur</div><div class="duo-plus">+</div><div class="dr e">Explorateur</div></div><div class="duo-d">L'INTJ clôture et exécute. L'ENTP ouvre les possibles. En équilibre, ils couvrent l'arc complet de la pensée stratégique sans sacrifier l'action.</div></div>
+      <div class="duo-card r d2"><div class="duo-pair"><div class="dr i">Visionnaire</div><div class="duo-plus">+</div><div class="dr e">Provocateur</div></div><div class="duo-d">L'INTJ voit loin et avec précision. L'ENTP remet en question pour s'assurer que la trajectoire tient face aux variables imprévues.</div></div>
+      <div class="duo-card r d3"><div class="duo-pair"><div class="dr i">Efficacité</div><div class="duo-plus">+</div><div class="dr e">Créativité</div></div><div class="duo-d">Te de l'INTJ rencontre Ne de l'ENTP : des solutions à la fois originales et applicables, sans s'enliser dans la théorie pure ni dans l'exécution rigide.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">INTJ × ENTP — L'Alliance Stratégique</div>
+    <nav class="footer-nav" aria-label="Navigation">
+      <a href="../index.html">← Tous les pairs</a>
+      <a href="intj-infj.html">INTJ × INFJ</a>
+      <a href="entp-enfp.html">ENTP × ENFP</a>
+      <a href="intj-entp.html" aria-current="page">INTJ × ENTP</a>
+    </nav>
+    <div class="footer-src">
+      Sources : Crystal Knows, Psychology Junkie, Cognitive Type, r/INTJ · r/ENTP · r/mbti — Données croisées sur la compatibilité des types NT
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ===== THEME ===== */
+const root = document.documentElement;
+let theme = 'dark';
+const sunSVG = `<circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>`;
+const moonSVG = `<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>`;
+document.getElementById('tb').addEventListener('click', () => {
+  theme = theme === 'dark' ? 'light' : 'dark';
+  root.setAttribute('data-theme', theme);
+  document.getElementById('tic').innerHTML = theme === 'dark' ? sunSVG : moonSVG;
+  if (radarInst) setTimeout(buildRadar, 50);
+});
+
+/* ===== SCROLL PROGRESS ===== */
+window.addEventListener('scroll', () => {
+  const p = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+  document.getElementById('sp').style.width = p + '%';
+}, { passive: true });
+
+/* ===== STARFIELD ===== */
+(function() {
+  const cv = document.getElementById('starCanvas');
+  const ctx = cv.getContext('2d');
+  let stars = [], frame = 0, running = true;
+
+  function resize() {
+    cv.width = window.innerWidth;
+    cv.height = window.innerHeight;
+    build();
+  }
+  function build() {
+    stars = [];
+    const n = Math.floor(cv.width * cv.height / 7500);
+    for (let i = 0; i < n; i++) {
+      stars.push({
+        x: Math.random() * cv.width,
+        y: Math.random() * cv.height,
+        r: Math.random() * 1.4 + 0.2,
+        o: Math.random() * 0.65 + 0.15,
+        sp: Math.random() * 0.25 + 0.04,
+        ph: Math.random() * Math.PI * 2,
+        hue: Math.random() < 0.15 ? (Math.random() < 0.5 ? 210 : 160) : 0,
+        sat: Math.random() < 0.15 ? 80 : 0,
+      });
+    }
+  }
+  function draw() {
+    if (!running) { requestAnimationFrame(draw); return; }
+    ctx.clearRect(0, 0, cv.width, cv.height);
+    frame++;
+    for (const s of stars) {
+      const op = s.o * (0.55 + 0.45 * Math.sin(frame * s.sp * 0.04 + s.ph));
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      if (s.sat > 0) {
+        ctx.fillStyle = `hsla(${s.hue}, ${s.sat}%, 80%, ${op})`;
+      } else {
+        ctx.fillStyle = `rgba(255,255,255,${op})`;
+      }
+      ctx.fill();
+    }
+    requestAnimationFrame(draw);
+  }
+
+  const heroEl = document.querySelector('.hero');
+  const viz = new IntersectionObserver(e => { running = e[0].isIntersecting; }, { threshold: 0.01 });
+  viz.observe(heroEl);
+
+  window.addEventListener('resize', resize);
+  resize();
+  draw();
+})();
+
+/* ===== REVEAL ===== */
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); ro.unobserve(e.target); }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.r').forEach(el => ro.observe(el));
+
+/* ===== ANIMATE NUMBER ===== */
+function animNum(el, target, dur = 1400) {
+  const start = performance.now();
+  (function tick(now) {
+    const t = Math.min((now - start) / dur, 1);
+    const ease = 1 - Math.pow(1 - t, 3);
+    el.textContent = Math.round(target * ease);
+    if (t < 1) requestAnimationFrame(tick);
+  })(start);
+}
+
+/* ===== HERO COUNTERS ===== */
+const ho = new IntersectionObserver(e => {
+  if (e[0].isIntersecting) {
+    document.querySelectorAll('.hstat-n').forEach(el => animNum(el, +el.dataset.t));
+    ho.disconnect();
+  }
+}, { threshold: 0.5 });
+ho.observe(document.querySelector('.hero-stats'));
+
+/* ===== KPI DATA ===== */
+const kpiData = [
+  { label: 'Compatibilité globale',  value: 78, color: '#3b82f6' },
+  { label: 'Connexion émotionnelle', value: 60, color: '#8b5cf6' },
+  { label: 'Lien intellectuel',      value: 97, color: '#10b981' },
+  { label: 'Communication',          value: 80, color: '#06b6d4' },
+  { label: 'Résolution de conflits', value: 64, color: '#f59e0b' },
+  { label: 'Vie quotidienne',        value: 56, color: '#f97316' },
+  { label: 'Alignement des valeurs', value: 74, color: '#6366f1' },
+  { label: 'Confiance',              value: 80, color: '#0ea5e9' },
+  { label: 'Intimité',               value: 68, color: '#14b8a6' },
+  { label: 'Potentiel long terme',   value: 75, color: '#22c55e' },
+];
+
+const grid = document.getElementById('kpiGrid');
+kpiData.forEach((k, i) => {
+  const d = i % 3 === 1 ? ' d1' : i % 3 === 2 ? ' d2' : '';
+  const card = document.createElement('div');
+  card.className = 'kpi-card r' + d;
+  card.innerHTML = `
+    <div class="g-wrap">
+      <canvas id="g${i}"></canvas>
+      <div class="g-val"><span class="gn" data-t="${k.value}">0</span><sup>%</sup></div>
+    </div>
+    <div class="kpi-lbl">${k.label}</div>`;
+  grid.appendChild(card);
+  ro.observe(card);
+});
+
+/* ===== GAUGE DRAW ===== */
+function drawGauge(canvas, val, color) {
+  const sz = 108;
+  canvas.width = sz * 2; canvas.height = sz * 2;
+  canvas.style.width = sz + 'px'; canvas.style.height = sz + 'px';
+  const ctx = canvas.getContext('2d');
+  ctx.scale(2, 2);
+  const cx = sz / 2, r = cx - 11;
+  const sa = -Math.PI * .75, ea = Math.PI * .75, total = ea - sa;
+  const target = val / 100;
+  let prog = 0;
+  const bgColor = getComputedStyle(root).getPropertyValue('--bdr').trim() || '#1e2a3a';
+
+  (function frame() {
+    ctx.clearRect(0, 0, sz, sz);
+    ctx.beginPath(); ctx.arc(cx, cx, r, sa, ea);
+    ctx.strokeStyle = bgColor; ctx.lineWidth = 7; ctx.lineCap = 'round'; ctx.stroke();
+    if (prog > 0) {
+      ctx.beginPath(); ctx.arc(cx, cx, r, sa, sa + total * prog);
+      ctx.strokeStyle = color; ctx.lineWidth = 7; ctx.lineCap = 'round'; ctx.stroke();
+      ctx.beginPath(); ctx.arc(cx, cx, r, sa, sa + total * prog);
+      ctx.strokeStyle = color + '38'; ctx.lineWidth = 15; ctx.lineCap = 'round'; ctx.stroke();
+    }
+    if (prog < target) { prog = Math.min(prog + .018, target); requestAnimationFrame(frame); }
+  })();
+}
+
+const go = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const cv = e.target.querySelector('canvas');
+      const idx = +cv.id.slice(1);
+      drawGauge(cv, kpiData[idx].value, kpiData[idx].color);
+      animNum(e.target.querySelector('.gn'), kpiData[idx].value, 1200);
+      go.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.3 });
+document.querySelectorAll('.kpi-card').forEach(c => go.observe(c));
+
+/* ===== RADAR CHART ===== */
+let radarInst = null;
+function buildRadar() {
+  const cv = document.getElementById('radarChart');
+  const st = getComputedStyle(root);
+  const ip = st.getPropertyValue('--ip').trim();
+  const ep = st.getPropertyValue('--ep').trim();
+  const txm = st.getPropertyValue('--txm').trim();
+  const bdr = st.getPropertyValue('--bdr').trim();
+  if (radarInst) radarInst.destroy();
+  radarInst = new Chart(cv, {
+    type: 'radar',
+    data: {
+      labels: ['Rapidité', 'Profondeur', 'Expressivité', 'Temps de traitement', 'Écoute active', 'Spontanéité'],
+      datasets: [
+        { label: 'ENTP', data: [90, 70, 82, 28, 52, 92], borderColor: ep, backgroundColor: ep+'22', borderWidth: 2, pointBackgroundColor: ep, pointRadius: 4 },
+        { label: 'INTJ', data: [32, 96, 38, 90, 72, 18], borderColor: ip, backgroundColor: ip+'22', borderWidth: 2, pointBackgroundColor: ip, pointRadius: 4 },
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: true,
+      scales: {
+        r: {
+          beginAtZero: true, max: 100,
+          ticks: { display: false, stepSize: 25 },
+          grid: { color: bdr }, angleLines: { color: bdr },
+          pointLabels: { color: txm, font: { family: "'Satoshi', sans-serif", size: 11, weight: '500' } }
+        }
+      },
+      plugins: {
+        legend: { position: 'bottom', labels: { color: txm, font: { family: "'Satoshi', sans-serif", size: 12 }, padding: 16, usePointStyle: true, pointStyle: 'circle' } },
+        tooltip: { backgroundColor: 'rgba(6,9,15,.92)', titleFont: { family: "'Satoshi', sans-serif" }, bodyFont: { family: "'Satoshi', sans-serif" }, padding: 12, cornerRadius: 8 }
+      },
+      animation: { duration: 900, easing: 'easeOutQuart' }
+    }
+  });
+}
+
+const radarObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { buildRadar(); radarObs.unobserve(e.target); } });
+}, { threshold: 0.3 });
+radarObs.observe(document.getElementById('radarChart'));
+</script>
+</body>
+</html>
